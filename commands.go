@@ -349,6 +349,9 @@ type Cmdable interface {
 	GeoRadiusByMemberStore(ctx context.Context, key, member string, query *GeoRadiusQuery) *IntCmd
 	GeoDist(ctx context.Context, key string, member1, member2, unit string) *FloatCmd
 	GeoHash(ctx context.Context, key string, members ...string) *StringSliceCmd
+
+	JsonSet(ctx context.Context, key, path, value string) *StringSliceCmd
+	JsonGet(ctx context.Context, key, path string) *StringSliceCmd
 }
 
 type StatefulCmdable interface {

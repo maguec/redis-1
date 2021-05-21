@@ -4247,6 +4247,13 @@ var _ = Describe("Commands", func() {
 				Expect(ids).To(Equal([]string{"1-0", "2-0", "3-0"}))
 			})
 
+			It("should XAutoClaim", func() {
+				//create some streams here
+				a, err := client.XAutoClaim(ctx, "stream", "mygroup", "autoconsumer", 100, "0-0", 25, true)
+				Expect(err).NotTo(HaveOccurred())
+				Expect(a).To(Equal(int64(2)))
+			})
+
 			It("should XAck", func() {
 				n, err := client.XAck(ctx, "stream", "group", "1-0", "2-0", "4-0").Result()
 				Expect(err).NotTo(HaveOccurred())
